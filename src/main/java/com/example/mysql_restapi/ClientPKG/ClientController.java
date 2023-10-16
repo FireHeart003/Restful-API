@@ -1,4 +1,4 @@
-package com.example.mysql_restapi.client;
+package com.example.mysql_restapi.ClientPKG;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
