@@ -68,4 +68,20 @@ public class ClientService {
         }
         clientRepository.save(client);
     }
+
+    public Client retrieveClient(String username){
+        Optional<Client> clientOptional =
+                clientRepository.findClientByUsername(username);
+        if(clientOptional.isEmpty()){
+            throw new IllegalStateException("username not found");
+        }
+        Client ret = null;
+        List<Client> c = clientRepository.findAll();
+        for (Client temp : c) {
+            if (temp.getUsername().equals(username)) {
+                ret = temp;
+            }
+        }
+        return ret;
+    }
 }

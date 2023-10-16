@@ -21,7 +21,10 @@ public class ClientController {
         return clientService.getClients();
     }
 
-    @PostMapping(value = "/save")
+    @GetMapping(value = "/{username}")
+    public Client retrieveClient(@PathVariable String username){return clientService.retrieveClient(username);}
+
+    @PostMapping(value = "/adduser")
     public void registerNewClient(@RequestBody Client client){
         clientService.addNewClient(client);
     }

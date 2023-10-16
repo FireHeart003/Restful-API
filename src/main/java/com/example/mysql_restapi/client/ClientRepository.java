@@ -13,4 +13,6 @@ public interface ClientRepository
     @Query("SELECT s FROM Client s WHERE s.email = ?1")
     Optional<Client> findClientByEmail(String email);
 
+    @Query("SELECT c FROM Client c WHERE c.username = ?1")
+    Optional<Client> findClientByUsername(String username);
 }
