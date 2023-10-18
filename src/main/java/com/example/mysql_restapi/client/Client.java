@@ -2,6 +2,8 @@ package com.example.mysql_restapi.client;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table
 public class Client {
@@ -23,7 +25,7 @@ public class Client {
     private String email;
     private String address;
 
-    public Client(){
+    public Client() {
     }
 
     public Client(Long id, String username, String password) {
@@ -102,6 +104,17 @@ public class Client {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    private List<Wishlist> wishlist;
+
+    public List<Wishlist> getWishlist() {
+        return wishlist;
+    }
+
+    public void setWishlist(List<Wishlist> wishlist) {
+        this.wishlist = wishlist;
     }
 
     @Override
