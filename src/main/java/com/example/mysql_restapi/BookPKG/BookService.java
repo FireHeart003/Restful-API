@@ -17,7 +17,7 @@ public class BookService
     public List<Book> getBook(){ return bookRepository.findAll();}
 
 
-    public Book retrieveBook(long isbn)
+    public Book retrieveBookByISBN(long isbn)
     {
         Optional<Book> bookOptional =
                 bookRepository.FindBookByISBN(isbn);

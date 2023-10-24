@@ -1,4 +1,4 @@
-package com.example.mysql_restapi.ClientPKG;
+package com.example.mysql_restapi.client;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

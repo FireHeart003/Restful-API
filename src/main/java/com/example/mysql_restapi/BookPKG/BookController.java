@@ -16,8 +16,8 @@ public class BookController {
     @GetMapping(value = "/books")
     public List<Book> getBook(){return bookService.getBook();}
 
-    @GetMapping(value = "/{ISBN}")
-    public Book retrieveBook(@PathVariable long ISBN){return bookService.retrieveBook(ISBN);}
+    @GetMapping(value = "/books/{ISBN}")
+    public Book retrieveBookByISBN(@PathVariable long ISBN){return bookService.retrieveBookByISBN(ISBN);}
 
     @PostMapping(value = "/addBook")
     public void addNewBook(@RequestBody Book book){bookService.addNewBook(book);}

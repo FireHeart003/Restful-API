@@ -1,4 +1,4 @@
-package com.example.mysql_restapi.ClientPKG;
+package com.example.mysql_restapi.client;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +21,8 @@ public class ClientController {
         return clientService.getClients();
     }
 
-    @GetMapping(value = "/{username}")
-    public Client retrieveClient(@PathVariable String username){return clientService.retrieveClient(username);}
+    @GetMapping(value = "/users/{username}")
+    public Client retrieveClientByUsername(@PathVariable String username){return clientService.retrieveClientByUsername(username);}
 
     @PostMapping(value = "/adduser")
     public void registerNewClient(@RequestBody Client client){

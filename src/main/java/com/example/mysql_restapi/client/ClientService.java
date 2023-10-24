@@ -1,4 +1,4 @@
-package com.example.mysql_restapi.ClientPKG;
+package com.example.mysql_restapi.client;
 
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,7 +69,7 @@ public class ClientService {
         clientRepository.save(client);
     }
 
-    public Client retrieveClient(String username){
+    public Client retrieveClientByUsername(String username){
         Optional<Client> clientOptional =
                 clientRepository.findClientByUsername(username);
         if(clientOptional.isEmpty()){
