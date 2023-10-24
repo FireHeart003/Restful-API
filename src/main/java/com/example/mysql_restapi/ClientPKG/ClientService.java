@@ -1,4 +1,4 @@
-package com.example.mysql_restapi.client;
+package com.example.mysql_restapi.ClientPKG;
 
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
