@@ -14,6 +14,8 @@ public class Book
     private String Publisher;
 
     private double Price;
+    private double ratings;
+    private double discountPercentage;
     private int YearPublished;
     private int CopiesSold;
 
