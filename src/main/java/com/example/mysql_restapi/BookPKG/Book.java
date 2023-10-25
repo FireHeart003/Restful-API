@@ -33,6 +33,23 @@ public class Book
         this.CopiesSold = CopiesSold;
     }
 
+    public Book(long ISBN, String title, String description, String author, String genre,
+                String publisher, double price, int yearPublished, int copiesSold,
+                double ratings, double discountPercentage
+                ) {
+        this.ISBN = ISBN;
+        Title = title;
+        Description = description;
+        Author = author;
+        Genre = genre;
+        Publisher = publisher;
+        Price = price;
+        this.ratings = ratings;
+        this.discountPercentage = discountPercentage;
+        YearPublished = yearPublished;
+        CopiesSold = copiesSold;
+    }
+
     public Book() {
 
     }
@@ -109,7 +126,36 @@ public class Book
         CopiesSold = copiesSold;
     }
 
+    public double getRatings() {
+        return ratings;
+    }
 
+    public void setRatings(double ratings) {
+        this.ratings = ratings;
+    }
 
+    public double getDiscountPercentage() {
+        return discountPercentage;
+    }
 
+    public void setDiscountPercentage(double discountPercentage) {
+        this.discountPercentage = discountPercentage;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "ISBN=" + ISBN +
+                ", Title='" + Title + '\'' +
+                ", Description='" + Description + '\'' +
+                ", Author='" + Author + '\'' +
+                ", Genre='" + Genre + '\'' +
+                ", Publisher='" + Publisher + '\'' +
+                ", Price=" + Price +
+                ", ratings=" + ratings +
+                ", discountPercentage=" + discountPercentage +
+                ", YearPublished=" + YearPublished +
+                ", CopiesSold=" + CopiesSold +
+                '}';
+    }
 }

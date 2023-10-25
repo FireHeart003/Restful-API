@@ -11,7 +11,7 @@ public class ClientConfig {
     @Bean
     CommandLineRunner commandLineRunner(ClientRepository repository){
         return args -> {
-            com.example.mysql_restapi.client.Client hello = new Client(
+            Client hello = new Client(
                     1L,
                     "hello",
                     "world"

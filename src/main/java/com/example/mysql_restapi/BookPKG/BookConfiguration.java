@@ -24,8 +24,23 @@ public class BookConfiguration {
 
             );
 
+            Book book2 = new Book(
+                    987654321,
+                    "Skywalker",
+                    "Starwars Ep 1",
+                    "Geroge Lucas",
+                    "Science fiction",
+                    "LucasFilm",
+                    15,
+                    2000,
+                    200,
+                    8.8,
+                    0.10
+            );
+
+
             repository.saveAll(
-                    List.of(Test)
+                    List.of(Test, book2)
             );
         };
     }
