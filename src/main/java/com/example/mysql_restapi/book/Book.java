@@ -1,11 +1,17 @@
-package com.example.mysql_restapi.BookPKG;
+package com.example.mysql_restapi.book;
 import jakarta.persistence.*;
+import com.example.mysql_restapi.rating.Rating;
+
+import java.util.List;
+
 
 @Entity
 @Table
 public class Book
 {
     @Id
+    @Column
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private long ISBN;
     private String Title;
     private String Description;
@@ -18,6 +24,9 @@ public class Book
     private double discountPercentage;
     private int YearPublished;
     private int CopiesSold;
+
+    @OneToMany(mappedBy = "book")
+    private List<Rating> rates;
 
     public Book(long ISBN, String Title, String Description, String Author,
                      String Genre, String Publisher, double Price,

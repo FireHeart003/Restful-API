@@ -1,6 +1,5 @@
-package com.example.mysql_restapi.AuthorPKG;
+package com.example.mysql_restapi.author;
 
-import com.example.mysql_restapi.BookPKG.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -16,7 +15,7 @@ public class AuthorController {
         this.authorService = authorService;
     }
 
-    @GetMapping(value = "/Authors")
+    @GetMapping(value = "/authors")
     public List<Author> getAuthor(){
         return authorService.getAuthor();
     }
@@ -24,7 +23,7 @@ public class AuthorController {
     //@GetMapping(value = "/{AuthorID}")
     //public Author retrieveBookByAuthor(@PathVariable long ID){return authorService.retrieveBookByAuthor(ID);}
 
-    @PostMapping(value = "/AddAuthor")
+    @PostMapping(value = "/authors/add")
     public void registerNewAuthor(@RequestBody Author author){
         authorService.addNewAuthor(author);
     }

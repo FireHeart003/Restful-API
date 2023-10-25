@@ -1,4 +1,4 @@
-package com.example.mysql_restapi.AuthorPKG;
+package com.example.mysql_restapi.author;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

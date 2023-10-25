@@ -1,4 +1,4 @@
-package com.example.mysql_restapi.AuthorPKG;
+package com.example.mysql_restapi.author;
 
 import jakarta.persistence.*;
 

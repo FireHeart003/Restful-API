@@ -8,6 +8,7 @@ import java.util.List;
 @Table
 public class Client {
     @Id
+    @Column
     private Long id;
     @SequenceGenerator(
             name = "library_sequence",

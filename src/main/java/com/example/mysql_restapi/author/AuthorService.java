@@ -1,4 +1,4 @@
-package com.example.mysql_restapi.AuthorPKG;
+package com.example.mysql_restapi.author;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.example.mysql_restapi.BookPKG;
+package com.example.mysql_restapi.book;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -25,7 +25,7 @@ public class BookConfiguration {
             );
 
             Book book2 = new Book(
-                    987654321,
+                    987123321,
                     "Skywalker",
                     "Starwars Ep 1",
                     "Geroge Lucas",
