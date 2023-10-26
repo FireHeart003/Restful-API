@@ -22,19 +22,20 @@ public class ClientService {
     }
 
     public void addNewClient(Client client) {
-       Optional<Client> clientOptional =
-               clientRepository.findClientByEmail(client.getEmail());
-       if(clientOptional.isPresent()){
-           throw new IllegalStateException("email taken");
-       }
-       clientRepository.save(client);
+        Optional<Client> clientOptional =
+                clientRepository.findClientByEmail(client.getEmail());
+        if(clientOptional.isPresent()){
+            throw new IllegalStateException("email taken");
+        }
+        clientRepository.save(client);
     }
 
     public void deleteCLient(Long clientId) {
         boolean exists = clientRepository.existsById((clientId));
         if(!exists){
             throw new IllegalStateException("client with id " + clientId
-                 + " does not exists");
+                    + " does not exists");
+
         }
         clientRepository.deleteById(clientId);
     }
@@ -44,12 +45,12 @@ public class ClientService {
         Client client = clientRepository.findById(clientId)
                 .orElseThrow(() -> new IllegalStateException((
                         "client with id " + clientId + " does not exist!"
-                        )));
+                )));
 
         if(newclient.getName() != null &&
                 !newclient.getName().isEmpty() &&
-            !Objects.equals(client.getName(), newclient.getName())){
-                client.setName(newclient.getName());
+                !Objects.equals(client.getName(), newclient.getName())){
+            client.setName(newclient.getName());
         }
         if(newclient.getEmail() != null &&
                 !newclient.getEmail().isEmpty() &&
@@ -69,7 +70,8 @@ public class ClientService {
         clientRepository.save(client);
     }
 
-    public Client retrieveClient(String username){
+
+    public Client retrieveClientByUsername(String username){
         Optional<Client> clientOptional =
                 clientRepository.findClientByUsername(username);
         if(clientOptional.isEmpty()){
