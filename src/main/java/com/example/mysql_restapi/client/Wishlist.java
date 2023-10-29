@@ -9,6 +9,7 @@ public class Wishlist {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String wishlistName;
     private String bookTitle;
 
     @ManyToOne
@@ -17,6 +18,7 @@ public class Wishlist {
 
     public Wishlist() {
     }
+
 
     public Wishlist(String bookTitle, Client client) {
         this.bookTitle = bookTitle;
@@ -45,5 +47,13 @@ public class Wishlist {
 
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    public String getWishlistName() {
+        return wishlistName;
+    }
+
+    public void setWishlistName(String wishlistName) {
+        this.wishlistName = wishlistName;
     }
 }

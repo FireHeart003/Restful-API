@@ -32,4 +32,15 @@ public class WishlistController {
     public void removeFromWishlist(@PathVariable("wishlistId") Long wishlistId) {
         wishlistService.removeFromWishlist(wishlistId);
     }
+    @PutMapping(path = "/wishlist/updateName/{wishlistId}")
+    public void updateWishlistName(
+            @PathVariable("wishlistId") Long wishlistId,
+            @RequestParam("wishlistName") String wishlistName) {
+        wishlistService.updateWishlistName(wishlistId, wishlistName);
+    }
+    @GetMapping(value = "/wishlist/{wishlistId}")
+    public Wishlist getWishlistById(@PathVariable("wishlistId") Long wishlistId) {
+        return wishlistService.getWishlistById(wishlistId);
+    }
+
 }

@@ -26,6 +26,23 @@ public class WishlistService {
         Wishlist wishlist = new Wishlist(bookTitle, client);
         wishlistRepository.save(wishlist);
     }
+    public void updateWishlistName(Long wishlistId, String wishlistName) {
+        Wishlist wishlist = wishlistRepository.findById(wishlistId)
+                .orElseThrow(() -> new IllegalStateException(
+                        "Wishlist with id " + wishlistId + " does not exist!"
+                ));
+
+        wishlist.setWishlistName(wishlistName);
+        wishlistRepository.save(wishlist);
+    }
+    public Wishlist getWishlistById(Long wishlistId) {
+        return wishlistRepository.findWishlistById(wishlistId)
+                .orElseThrow(() -> new IllegalStateException(
+                        "Wishlist with id " + wishlistId + " does not exist!"
+                ));
+    }
+
+
 
     public void removeFromWishlist(Long wishlistId) {
         wishlistRepository.deleteById(wishlistId);
