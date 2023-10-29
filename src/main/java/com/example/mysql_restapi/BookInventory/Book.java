@@ -28,7 +28,7 @@ public class Book {
     public Book(String pub, String g, double r, int s, double d){
     }
 
-    public Book(String publisher, String genre, double Ratings, int sales, double discountPercentage, int price
+    public Book(String publisher, String genre, double ratings, int sales, double discountPercentage, int price
     ) {
         this.publisher = publisher;
         this.genre = genre;
