@@ -1,5 +1,6 @@
 package com.example.mysql_restapi.client;
 
+import com.example.mysql_restapi.creditcard.CreditCard;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -10,6 +11,10 @@ import java.util.List;
 public class Client {
     @Id
     @Column
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "library_sequence"
+    )
     private Long id;
     @SequenceGenerator(
             name = "library_sequence",
@@ -17,15 +22,15 @@ public class Client {
             allocationSize = 1
     )
 
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "library_sequence"
-    )
+
     private String username;
     private String password;
     private String name;
     private String email;
     private String address;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "credit_card_ccnum")
+    private CreditCard card;
 
     public Client(){}
 
@@ -116,6 +121,14 @@ public class Client {
 
     public void setWishlist(List<Wishlist> wishlist) {
         this.wishlist = wishlist;
+    }
+
+    public CreditCard getCard(){
+        return card;
+    }
+
+    public void setCard(CreditCard card){
+        this.card = card;
     }
 
     @Override
