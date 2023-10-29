@@ -25,7 +25,7 @@ public class Book {
     private double discountPercentage;
     private double price;
 
-    public Book(String publisherB, String s, double v, int i, double v1){
+    public Book(String pub, String g, double r, int s, double d){
     }
 
     public Book(String publisher, String genre, double Ratings, int sales, double discountPercentage, int price
