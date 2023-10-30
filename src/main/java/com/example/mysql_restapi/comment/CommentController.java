@@ -28,13 +28,17 @@ public class CommentController {
         if (commentText == null || commentText.trim().isEmpty()) {
             return ResponseEntity.badRequest().body("Comment text cannot be empty.");
         }
-
         Optional<Client> optionalUser = clientRepo.findById(clientId);
         Optional<Book> optionalBook = bookRepo.findById(bookISBN);
 
         if (optionalUser.isPresent() && optionalBook.isPresent()) {
             Client client = optionalUser.get();
             Book book = optionalBook.get();
+            boolean hasCommented = commentRepo.existsByClientAndBook(clientId, bookISBN);
+
+            if (hasCommented) {
+                return ResponseEntity.badRequest().body("You have already left a comment for this book.");
+            }
 
             Comment comment = new Comment();
             comment.setClient(client);
