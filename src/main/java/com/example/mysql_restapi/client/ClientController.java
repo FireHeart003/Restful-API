@@ -37,11 +37,11 @@ public class ClientController {
     }
 
 
-    @PutMapping(path = "/user/update/{clientId}")
+    @PutMapping(path = "/user/update")
     public void updateClient(
-            @PathVariable("clientId") Long clientID,
+            @RequestParam String username,
             @RequestBody Client client){
 
-        clientService.updateClient(client.getId(),client);
+        clientService.updateClient(username,client);
     }
 }

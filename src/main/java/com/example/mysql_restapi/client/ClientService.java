@@ -41,10 +41,10 @@ public class ClientService {
     }
 
     @Transactional
-    public void updateClient(Long clientId, Client newclient){
-        Client client = clientRepository.findById(clientId)
+    public void updateClient(String username, Client newclient){
+        Client client = clientRepository.findClientByUsername(username)
                 .orElseThrow(() -> new IllegalStateException((
-                        "client with id " + clientId + " does not exist!"
+                        "User with username" + username + " does not exist!"
                 )));
 
         if(newclient.getName() != null &&
