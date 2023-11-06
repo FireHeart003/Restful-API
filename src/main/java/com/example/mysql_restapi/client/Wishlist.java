@@ -1,6 +1,9 @@
 package com.example.mysql_restapi.client;
+import com.example.mysql_restapi.book.Book;
 
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table
@@ -8,22 +11,15 @@ public class Wishlist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String name;
 
-    private String wishlistName;
-    private String bookTitle;
-
+    // Many-to-One relationship with Client
     @ManyToOne
-    @JoinColumn(name = "client_id", nullable = false)
+    @JoinColumn(name = "client_id")
     private Client client;
 
-    public Wishlist() {
-    }
-
-
-    public Wishlist(String bookTitle, Client client) {
-        this.bookTitle = bookTitle;
-        this.client = client;
-    }
+    @OneToMany(mappedBy = "wishlist", cascade = CascadeType.ALL)
+    private List<Book> books;
 
     public Long getId() {
         return id;
@@ -33,12 +29,12 @@ public class Wishlist {
         this.id = id;
     }
 
-    public String getBookTitle() {
-        return bookTitle;
+    public String getName() {
+        return name;
     }
 
-    public void setBookTitle(String bookTitle) {
-        this.bookTitle = bookTitle;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Client getClient() {
@@ -48,12 +44,12 @@ public class Wishlist {
     public void setClient(Client client) {
         this.client = client;
     }
-
-    public String getWishlistName() {
-        return wishlistName;
+    public List<Book> getBooks() {
+        return books;
     }
 
-    public void setWishlistName(String wishlistName) {
-        this.wishlistName = wishlistName;
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
+
 }

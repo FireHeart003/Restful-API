@@ -1,5 +1,7 @@
 package com.example.mysql_restapi.client;
 
+
+import com.example.mysql_restapi.book.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,36 +17,49 @@ public class WishlistService {
         this.wishlistRepository = wishlistRepository;
     }
 
-    public List<Wishlist> getWishlist(Long clientId) {
-        return wishlistRepository.findAllByClient_Id(clientId);
-    }
-
-    public void addToWishlist(Long clientId, String bookTitle) {
+    public void createWishlist(Long clientId, String wishlistName) {
         Client client = new Client();
         client.setId(clientId);
 
-        Wishlist wishlist = new Wishlist(bookTitle, client);
+        Wishlist wishlist = new Wishlist();
+        wishlist.setName(wishlistName);
+        wishlist.setClient(client);
+
         wishlistRepository.save(wishlist);
     }
-    public void updateWishlistName(Long wishlistId, String wishlistName) {
+//
+//    public Wishlist getWishlist(Long wishlistId) {
+//        return wishlistRepository.findById(wishlistId)
+//                .orElseThrow(() -> new IllegalStateException("Wishlist not found"));
+//    }
+
+    public void addBookToWishlist(Long wishlistId, Book book) {
         Wishlist wishlist = wishlistRepository.findById(wishlistId)
-                .orElseThrow(() -> new IllegalStateException(
-                        "Wishlist with id " + wishlistId + " does not exist!"
-                ));
+                .orElseThrow(() -> new IllegalStateException("Wishlist not found"));
 
-        wishlist.setWishlistName(wishlistName);
+        List<Book> books = wishlist.getBooks();
+        books.add(book);
+        wishlist.setBooks(books);
+
         wishlistRepository.save(wishlist);
     }
-    public Wishlist getWishlistById(Long wishlistId) {
-        return wishlistRepository.findWishlistById(wishlistId)
-                .orElseThrow(() -> new IllegalStateException(
-                        "Wishlist with id " + wishlistId + " does not exist!"
-                ));
+
+    public void removeBookFromWishlist(Long wishlistId, Book book) {
+        Wishlist wishlist = wishlistRepository.findById(wishlistId)
+                .orElseThrow(() -> new IllegalStateException("Wishlist not found"));
+
+        List<Book> books = wishlist.getBooks();
+        books.remove(book);
+        wishlist.setBooks(books);
+
+        wishlistRepository.save(wishlist);
     }
 
+    public List<Book> getBooksInWishlist(Long wishlistId) {
+        Wishlist wishlist = wishlistRepository.findById(wishlistId)
+                .orElseThrow(() -> new IllegalStateException("Wishlist not found"));
 
-
-    public void removeFromWishlist(Long wishlistId) {
-        wishlistRepository.deleteById(wishlistId);
+        return wishlist.getBooks();
     }
 }
+

@@ -1,4 +1,6 @@
 package com.example.mysql_restapi.client;
+import com.example.mysql_restapi.book.Book;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,31 +18,30 @@ public class WishlistController {
         this.wishlistService = wishlistService;
     }
 
-    @GetMapping(value = "/{clientId}")
-    public List<Wishlist> getWishlist(@PathVariable("clientId") Long clientId) {
-        return wishlistService.getWishlist(clientId);
+//    @PostMapping(value = "/wishlist")
+//    public Wishlist getWishlist(@RequestParam Long wishlistId) {
+//        return wishlistService.getWishlist(wishlistId);
+//    }
+
+    @PostMapping(value = "/create")
+    public String createWishlist(@RequestParam Long clientId, @RequestParam String wishlistName) {
+        wishlistService.createWishlist(clientId, wishlistName);
+        return "Wishlist created successfully!";
     }
 
-    @PostMapping(value = "/add")
-    public void addToWishlist(
-            @RequestParam("clientId") Long clientId,
-            @RequestParam("bookTitle") String bookTitle) {
-        wishlistService.addToWishlist(clientId, bookTitle);
+    @PostMapping(value = "/addBook")
+    public void addBookToWishlist(@RequestParam Long wishlistId, @RequestBody Book book) {
+        wishlistService.addBookToWishlist(wishlistId, book);
     }
 
-    @DeleteMapping(path = "/remove/{wishlistId}")
-    public void removeFromWishlist(@PathVariable("wishlistId") Long wishlistId) {
-        wishlistService.removeFromWishlist(wishlistId);
-    }
-    @PutMapping(path = "/wishlist/updateName/{wishlistId}")
-    public void updateWishlistName(
-            @PathVariable("wishlistId") Long wishlistId,
-            @RequestParam("wishlistName") String wishlistName) {
-        wishlistService.updateWishlistName(wishlistId, wishlistName);
-    }
-    @GetMapping(value = "/wishlist/{wishlistId}")
-    public Wishlist getWishlistById(@PathVariable("wishlistId") Long wishlistId) {
-        return wishlistService.getWishlistById(wishlistId);
+    @DeleteMapping(value = "/removeBook")
+    public void removeBookFromWishlist(@RequestParam Long wishlistId, @RequestBody Book book) {
+        wishlistService.removeBookFromWishlist(wishlistId, book);
     }
 
+    @GetMapping(value = "/getBooks")
+    public List<Book> getBooksInWishlist(@RequestParam Long wishlistId) {
+        return wishlistService.getBooksInWishlist(wishlistId);
+    }
 }
+
