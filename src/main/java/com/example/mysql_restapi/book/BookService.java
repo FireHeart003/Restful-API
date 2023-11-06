@@ -18,24 +18,9 @@ public class BookService
     public List<Book> getBook(){ return bookRepository.findAll();}
 
 
-    public Book retrieveBookByISBN(long isbn)
-    {
-        Optional<Book> bookOptional =
-                bookRepository.FindBookByISBN(isbn);
-        if (bookOptional.isEmpty()){
-            throw new IllegalStateException("ISBN not found");
-        }
-        Book retrieve = null;
-        List<Book> b = bookRepository.findAll();
-        for (int i=0; i<b.size();i++){
-            Book temp = b.get(i);
-
-            if (temp.getISBN() == isbn)
-            {
-                retrieve = temp;
-            }
-        }
-        return retrieve;
+    public Book retrieveBookByISBN(long isbn) {
+        Optional<Book> bookOptional = bookRepository.findById(isbn);
+        return bookOptional.orElseThrow(() -> new IllegalStateException("ISBN not found"));
     }
 
     public void addNewBook(Book book) {
@@ -45,6 +30,11 @@ public class BookService
             throw new IllegalStateException("Book exists already.");
         }
         bookRepository.save(book);
+
+    }
+
+    public  List<Book> getBooksByAuthorId (Long authorId){
+        return bookRepository.findByAuthorId(authorId);
     }
 
 

@@ -18,8 +18,6 @@ public class AuthorConfiguration {
                     "TestPublisher"
             );
 
-
-
             repository.saveAll(
                     List.of(FirstTest)
             );

@@ -20,9 +20,6 @@ public class AuthorController {
         return authorService.getAuthor();
     }
 
-    //@GetMapping(value = "/{AuthorID}")
-    //public Author retrieveBookByAuthor(@PathVariable long ID){return authorService.retrieveBookByAuthor(ID);}
-
     @PostMapping(value = "/authors/add")
     public void registerNewAuthor(@RequestBody Author author){
         authorService.addNewAuthor(author);

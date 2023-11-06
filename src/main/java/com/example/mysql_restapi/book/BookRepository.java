@@ -11,6 +11,8 @@ import java.util.Optional;
 public interface BookRepository
         extends JpaRepository<Book, Long> {
 
+    List<Book> findByAuthorId(Long authorId);
+
     @Query("SELECT b FROM Book b WHERE b.ISBN = ?1")
     Optional<Book> FindBookByISBN(long isbn);
     @Query("SELECT b FROM Book b WHERE b.Genre = ?1")

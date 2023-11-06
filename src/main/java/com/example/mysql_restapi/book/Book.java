@@ -1,4 +1,5 @@
 package com.example.mysql_restapi.book;
+import com.example.mysql_restapi.author.Author;
 import com.example.mysql_restapi.rating.Rating;
 import jakarta.persistence.*;
 
@@ -12,8 +13,8 @@ public class Book
 {
     @Id
     @Column
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long ISBN;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long ISBN;
 
     private String Title;
     private String Description;
@@ -27,6 +28,10 @@ public class Book
     private double discountPercentage;
     private int YearPublished;
     private int CopiesSold;
+
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private Author author;
 
     @OneToMany(mappedBy = "book")
     private List<Rating> rates;

@@ -7,8 +7,9 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface AuthorRepository
-        extends JpaRepository<Author, Long> {
+public interface AuthorRepository extends JpaRepository<Author, Long> {
+    Optional<Author> findById(Long id);
+
 
     @Query("SELECT a FROM Author a WHERE a.id = ?1")
     Optional<Author> findAuthorByID(long id);

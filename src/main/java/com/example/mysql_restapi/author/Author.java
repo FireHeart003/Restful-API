@@ -1,31 +1,30 @@
 package com.example.mysql_restapi.author;
 
+import com.example.mysql_restapi.book.Book;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table
 public class Author {
     @Id
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+    private String biography;
+    private String publisher;
     @SequenceGenerator(
             name = "library_sequence",
             sequenceName = "library_sequence",
             allocationSize = 1
     )
 
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "library_sequence"
-    )
-    private String name;
-    private String biography;
-    private String publisher;
-
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+    private List<Book> books;
 
     public Author(){
     }
-
-
 
     public Author(long id, String name, String biography, String publisher) {
         this.id = id;
@@ -59,9 +58,6 @@ public class Author {
         this.publisher = publisher;
     }
 
-
-
-
     public long getID() {
         return id;
     }
@@ -69,8 +65,5 @@ public class Author {
     public void setId(long id) {
         this.id = id;
     }
-
-
-
 
 }
