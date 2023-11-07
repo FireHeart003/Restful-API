@@ -14,7 +14,7 @@ public class BookController {
     public BookController(BookService bookService){this.bookService = bookService;}
 
     @GetMapping(value = "/books")
-    public List<Book> getBook(){return bookService.getBook();}
+    public List<Book> getBooks(){return bookService.getBooks();}
 
     @GetMapping(value = "/books/{ISBN}")
     public Book retrieveBookByISBN(@PathVariable long ISBN){return bookService.retrieveBookByISBN(ISBN);}
@@ -29,9 +29,10 @@ public class BookController {
     }
 
     @GetMapping(value = "/books/topSellers")
-    public List<Integer> getTopSellers() {
+    public List<TopSeller> getTopSellers() {
         return bookService.getTopSellers();
     }
+
 
     @GetMapping(value = "/books/byRating/{rating}")
     public List<Book> getBooksByRating(@PathVariable double rating) {
