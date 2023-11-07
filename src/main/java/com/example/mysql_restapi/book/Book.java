@@ -2,7 +2,6 @@ package com.example.mysql_restapi.book;
 import com.example.mysql_restapi.rating.Rating;
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -12,7 +11,7 @@ public class Book
 {
     @Id
     @Column
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long ISBN;
 
     private String Title;
@@ -28,27 +27,14 @@ public class Book
     private int YearPublished;
     private int CopiesSold;
 
+
     @OneToMany(mappedBy = "book")
     private List<Rating> rates;
 
-    public Book(long ISBN, String Title, String Description, String Author,
-                     String Genre, String Publisher, double Price,
-                     int YearPublished, int CopiesSold) {
-        this.ISBN = ISBN;
-        this.Title = Title;
-        this.Description = Description;
-        this.Author = Author;
-        this.Genre = Genre;
-        this.Publisher = Publisher;
-        this.Price = Price;
-        this.YearPublished = YearPublished;
-        this.CopiesSold = CopiesSold;
-    }
 
     public Book(long ISBN, String title, String description, String author, String genre,
-                String publisher, double price, double ratings, int yearPublished, int copiesSold,
-                double discountPercentage
-                ) {
+                String publisher, double price, double ratings, int yearPublished,
+                int copiesSold, double discountPercentage) {
         this.ISBN = ISBN;
         Title = title;
         Description = description;
@@ -145,13 +131,6 @@ public class Book
     public void setRatings(double ratings) {
         this.ratings = ratings;
     }
-    /*public List<Rating> getRatings() {
-        return ratings;
-    }
-
-    public void setRatings(List<Rating> ratings) {
-        this.ratings = ratings;
-    }*/
 
     public double getDiscountPercentage() {
         return discountPercentage;
