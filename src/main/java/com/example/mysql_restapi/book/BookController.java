@@ -22,6 +22,9 @@ public class BookController {
     @PostMapping(value = "/books/add")
     public void addNewBook(@RequestBody Book book){bookService.addNewBook(book);}
 
+    @GetMapping(value = "/books/author/{AuthorID}")
+    public List<Book> retrieveBookByAuthorID(@PathVariable long AuthorID){return bookService.retrieveBookByAuthorID(AuthorID);}
+
     //BROWSING AND SORTING
     @GetMapping(value = "/books/genre/{genre}")
     public List<Book> getBooksByGenre(@PathVariable String genre) {

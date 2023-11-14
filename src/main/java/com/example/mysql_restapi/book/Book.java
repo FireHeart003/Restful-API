@@ -19,6 +19,7 @@ public class Book
     private String Description;
 
     private String Author;
+    private long AuthorID;
     private String Genre;
     private String Publisher;
 
@@ -31,21 +32,22 @@ public class Book
     @OneToMany(mappedBy = "book")
     private List<Rating> rates;
 
-    public Book(long ISBN, String Title, String Description, String Author,
-                     String Genre, String Publisher, double Price,
-                     int YearPublished, int CopiesSold) {
-        this.ISBN = ISBN;
-        this.Title = Title;
-        this.Description = Description;
-        this.Author = Author;
-        this.Genre = Genre;
-        this.Publisher = Publisher;
-        this.Price = Price;
-        this.YearPublished = YearPublished;
-        this.CopiesSold = CopiesSold;
-    }
+//    public Book(long ISBN, String Title, String Description, String Author, long AuthorID,
+//                     String Genre, String Publisher, double Price,
+//                     int YearPublished, int CopiesSold) {
+//        this.ISBN = ISBN;
+//        this.Title = Title;
+//        this.Description = Description;
+//        this.AuthorID = AuthorID;
+//        this.Author = Author;
+//        this.Genre = Genre;
+//        this.Publisher = Publisher;
+//        this.Price = Price;
+//        this.YearPublished = YearPublished;
+//        this.CopiesSold = CopiesSold;
+//    }
 
-    public Book(long ISBN, String title, String description, String author, String genre,
+    public Book(long ISBN, String title, String description, String author, long AuthorId, String genre,
                 String publisher, double price, double ratings, int yearPublished, int copiesSold,
                 double discountPercentage
                 ) {
@@ -53,6 +55,7 @@ public class Book
         Title = title;
         Description = description;
         Author = author;
+        AuthorID= AuthorId;
         Genre = genre;
         Publisher = publisher;
         Price = price;
@@ -81,6 +84,8 @@ public class Book
     public String getAuthor() {
         return Author;
     }
+
+    public long getAuthorID() {return AuthorID;}
 
     public String getGenre() {
         return Genre;
