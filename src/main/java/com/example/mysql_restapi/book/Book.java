@@ -1,6 +1,7 @@
 package com.example.mysql_restapi.book;
 import com.example.mysql_restapi.rating.Rating;
 import jakarta.persistence.*;
+import com.example.mysql_restapi.client.Wishlist;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,9 +32,21 @@ public class Book
     @OneToMany(mappedBy = "book")
     private List<Rating> rates;
 
+    @ManyToOne
+    @JoinColumn(name = "wishlist_id")
+    private Wishlist wishlist;
+
+    public Wishlist getWishlist() {
+        return wishlist;
+    }
+
+    public void setWishlist(Wishlist wishlist) {
+        this.wishlist = wishlist;
+    }
+
     public Book(long ISBN, String Title, String Description, String Author,
-                     String Genre, String Publisher, double Price,
-                     int YearPublished, int CopiesSold) {
+                String Genre, String Publisher, double Price,
+                int YearPublished, int CopiesSold) {
         this.ISBN = ISBN;
         this.Title = Title;
         this.Description = Description;
