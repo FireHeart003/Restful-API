@@ -28,7 +28,7 @@ public class Client {
     private String name;
     private String email;
     private String address;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "credit_card_ccnum")
     private CreditCard card;
 

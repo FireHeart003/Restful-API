@@ -25,19 +25,19 @@ public class ClientController {
     @GetMapping(value = "/users/{username}")
     public Client retrieveClientByUsername(@PathVariable String username){return clientService.retrieveClientByUsername(username);}
 
-    @PostMapping(value = "/user/add")
+    @PostMapping(value = "/users/add")
     public void registerNewClient(@RequestBody Client client){
         clientService.addNewClient(client);
     }
 
 
-    @DeleteMapping(path = "/user/delete/{clientID}")
+    @DeleteMapping(path = "/users/delete/{clientID}")
     public void deleteClient(@PathVariable("clientID") Long clientId){
         clientService.deleteCLient(clientId);
     }
 
 
-    @PutMapping(path = "/user/update")
+    @PutMapping(path = "/users/update")
     public void updateClient(
             @RequestParam String username,
             @RequestBody Client client){

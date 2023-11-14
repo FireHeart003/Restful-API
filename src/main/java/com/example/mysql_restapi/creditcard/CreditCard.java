@@ -2,9 +2,6 @@ package com.example.mysql_restapi.creditcard;
 
 import jakarta.persistence.*;
 
-import java.time.YearMonth;
-import java.util.List;
-
 
 @Entity
 @Table
@@ -17,22 +14,22 @@ public class CreditCard {
     private String fName;
     private String lName;
     private String pin;
-    private String expireMonth;
-
-    private String expireYear;
+    @Column
+    private String month;
+    @Column
+    private String year;
 
 
 
     public CreditCard(){}
 
-    public CreditCard(Long id, String ccnum, String fName, String lName, String pin, String expireMonth, String expireYear) {
-        this.id = id;
+    public CreditCard(String ccnum, String fName, String lName, String pin, String expireMonth, String expireYear) {
         this.ccnum = ccnum;
         this.fName = fName;
         this.lName = lName;
         this.pin = pin;
-        this.expireMonth = expireMonth;
-        this.expireYear = expireYear;
+        this.month = expireMonth;
+        this.year = expireYear;
     }
 
     public Long getId() {
@@ -75,19 +72,32 @@ public class CreditCard {
         this.pin = pin;
     }
 
-    public String getExpireMonth() {
-        return expireMonth;
+    public String getMonth() {
+        return month;
     }
 
-    public void setExpireMonth(String expireMonth) {
-        this.expireMonth = expireMonth;
+    public void setMonth(String expireMonth) {
+        this.month = expireMonth;
     }
 
-    public String getExpireYear() {
-        return expireYear;
+    public String getYear() {
+        return year;
     }
 
-    public void setExpireYear(String expireYear) {
-        this.expireMonth = expireYear;
+    public void setYear(String expireYear) {
+        this.year = expireYear;
+    }
+
+    @Override
+    public String toString() {
+        return "CreditCard{" +
+                "id=" + id +
+                ", ccnum='" + ccnum + '\'' +
+                ", fName='" + fName + '\'' +
+                ", lName='" + lName + '\'' +
+                ", pin='" + pin + '\'' +
+                ", month='" + month + '\'' +
+                ", year='" + year + '\'' +
+                '}';
     }
 }

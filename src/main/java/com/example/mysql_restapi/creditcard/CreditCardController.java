@@ -1,6 +1,5 @@
 package com.example.mysql_restapi.creditcard;
 
-import com.example.mysql_restapi.client.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +22,8 @@ public class CreditCardController {
 
     @PostMapping(value = "/add/card")
     public void registerNewCard(@RequestParam String username, @RequestBody CreditCard card){
+        System.out.println(card.getYear());
+        System.out.println("\n"+ card.getMonth());
         cardService.addNewCard(username, card);
     }
 }
