@@ -1,12 +1,22 @@
-package com.example.mysql_restapi.client;
+    package com.example.mysql_restapi.client;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+    import org.springframework.data.jpa.repository.JpaRepository;
+    import org.springframework.data.jpa.repository.Query;
+    import org.springframework.stereotype.Repository;
 
-import java.util.List;
+    import java.util.List;
+    import java.util.Optional;
 
-@Repository
-public interface WishlistRepository extends JpaRepository<Wishlist, Long> {
-    List<Wishlist> findAllByClient_Id(Long clientId);
-    //I need to add Query methods
-}
+    @Repository
+    public interface WishlistRepository extends JpaRepository<Wishlist, Long> {
+        @Query("SELECT w FROM Wishlist w WHERE w.client.id = ?1")
+        List<Wishlist> findByClientId(Long clientId);
+
+        @Query("SELECT w FROM Wishlist w WHERE w.name = ?1 AND w.client.id = ?2")
+        Optional<Wishlist> findByNameAndClientId(String name, Long clientId);
+
+        @Query("SELECT w FROM Wishlist w WHERE w.client.id = ?1 AND w.books IS EMPTY")
+        List<Wishlist> findEmptyWishlistsByClientId(Long clientId);
+    }
+
+

@@ -11,25 +11,15 @@ public class BookConfiguration {
     @Bean
     CommandLineRunner commandLine(BookRepository repository){
         return args -> {
-            Book Test = new Book(
-                    987654321,
-                    "TestTitle",
-                    "This a test object",
-                    "Matt",
-                    "fiction",
-                    "Intellj",
-                    50,
-                    2000,
-                    500
 
-            );
 
-            Book book2 = new Book(
+            Book book1 = new Book(
 
                     987123321,
                     "Skywalker",
                     "Starwars Ep 1",
-                    "Geroge Lucas",
+                    "Test Author",
+                    123456789,
                     "Science fiction",
                     "LucasFilm",
                     15,
@@ -39,9 +29,24 @@ public class BookConfiguration {
                     0.10
             );
 
+            Book book2 = new Book(
+                    516202200,
+                    "The Great Gatsby",
+                    "Test book for Great Gatsby",
+                    "Test Author",
+                    123456789,
+                    "Novel",
+                    "Test Publisher",
+                    20,
+                    9.8,
+                    2000,
+                    3000,
+                    0.0
+            );
+
 
             repository.saveAll(
-                    List.of(Test, book2)
+                    List.of(book1, book2)
             );
         };
     }

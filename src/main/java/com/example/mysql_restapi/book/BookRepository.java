@@ -13,6 +13,10 @@ public interface BookRepository
 
     @Query("SELECT b FROM Book b WHERE b.ISBN = ?1")
     Optional<Book> FindBookByISBN(long isbn);
+
+    @Query("SELECT b FROM Book b WHERE b.AuthorID = ?1")
+    List<Book> FindBookByAuthorID(long AuthorID);
+
     @Query("SELECT b FROM Book b WHERE b.Genre = ?1")
     List<Book> findByGenre(String genre);
     //@Query("SELECT b FROM Book b ORDER BY b.copiesSold DESC")

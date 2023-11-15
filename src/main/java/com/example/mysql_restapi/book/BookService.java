@@ -18,6 +18,7 @@ public class BookService
     public List<Book> getBook(){ return bookRepository.findAll();}
 
 
+
     public Book retrieveBookByISBN(long isbn)
     {
         Optional<Book> bookOptional =
@@ -47,6 +48,7 @@ public class BookService
         bookRepository.save(book);
     }
 
+    public List<Book> retrieveBookByAuthorID(long AuthorID) { return bookRepository.FindBookByAuthorID(AuthorID);}
 
     //BROWSING AND SORTING
     public List<Book> getBooksByGenre(String genre) {

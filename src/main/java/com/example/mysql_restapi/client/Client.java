@@ -22,7 +22,6 @@ public class Client {
             allocationSize = 1
     )
 
-
     private String username;
     private String password;
     private String name;
@@ -112,16 +111,6 @@ public class Client {
         this.address = address;
     }
 
-    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
-    private List<Wishlist> wishlist;
-
-    public List<Wishlist> getWishlist() {
-        return wishlist;
-    }
-
-    public void setWishlist(List<Wishlist> wishlist) {
-        this.wishlist = wishlist;
-    }
 
     public CreditCard getCard(){
         return card;
