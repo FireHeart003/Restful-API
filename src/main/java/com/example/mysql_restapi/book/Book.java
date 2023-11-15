@@ -40,9 +40,9 @@ public class Book
         return wishlist;
     }
 
-    public void setWishlist(Wishlist wishlist) {
-        this.wishlist = wishlist;
-    }
+//    public void setWishlist(Wishlist wishlist) {
+//        this.wishlist = wishlist;
+//    }
 
     public Book(long ISBN, String Title, String Description, String Author,
                 String Genre, String Publisher, double Price,
