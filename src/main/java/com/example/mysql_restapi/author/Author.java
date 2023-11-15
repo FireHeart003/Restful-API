@@ -22,10 +22,7 @@ public class Author {
     private String publisher;
 
 
-    public Author(){
-    }
-
-
+    public Author(){}
 
     public Author(long id, String name, String biography, String publisher) {
         this.id = id;
@@ -58,9 +55,6 @@ public class Author {
     public void setPublisher(String publisher) {
         this.publisher = publisher;
     }
-
-
-
 
     public long getID() {
         return id;
