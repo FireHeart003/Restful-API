@@ -41,10 +41,10 @@ public class ClientService {
     }
 
     @Transactional
-    public void updateClient(Long clientId, Client newclient){
-        Client client = clientRepository.findById(clientId)
+    public void updateClient(String username, Client newclient){
+        Client client = clientRepository.findClientByUsername(username)
                 .orElseThrow(() -> new IllegalStateException((
-                        "client with id " + clientId + " does not exist!"
+                        "User with username" + username + " does not exist!"
                 )));
 
         if(newclient.getName() != null &&
@@ -52,9 +52,12 @@ public class ClientService {
                 !Objects.equals(client.getName(), newclient.getName())){
             client.setName(newclient.getName());
         }
-        if(newclient.getEmail() != null &&
-                !newclient.getEmail().isEmpty() &&
-                !Objects.equals(client.getEmail(), newclient.getEmail())){
+        if(newclient.getUsername() != null &&
+                !newclient.getUsername().isEmpty() &&
+                !Objects.equals(client.getUsername(), newclient.getUsername())){
+            client.setUsername(newclient.getUsername());
+        }
+        if(newclient.getEmail().isEmpty()){
             client.setEmail(newclient.getEmail());
         }
         if(newclient.getAddress() != null &&
