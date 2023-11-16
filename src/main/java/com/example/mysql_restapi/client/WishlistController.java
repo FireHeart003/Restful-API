@@ -1,7 +1,6 @@
 package com.example.mysql_restapi.client;
+
 import com.example.mysql_restapi.book.Book;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,30 +17,26 @@ public class WishlistController {
         this.wishlistService = wishlistService;
     }
 
-//    @PostMapping(value = "/wishlist")
-//    public Wishlist getWishlist(@RequestParam Long wishlistId) {
-//        return wishlistService.getWishlist(wishlistId);
-//    }
-
     @PostMapping(value = "/create")
     public String createWishlist(@RequestParam Long clientId, @RequestParam String wishlistName) {
-        wishlistService.createWishlist(clientId, wishlistName);
-        return "Wishlist created successfully!";
+        Long generatedWishlistId = wishlistService.createWishlist(clientId, wishlistName);
+        return "You have successfully created a Wishlist with name " + wishlistName + "\nThis is your generated Wishlist ID = " + generatedWishlistId;
     }
 
     @PostMapping(value = "/addBook")
-    public void addBookToWishlist(@RequestParam Long wishlistId, @RequestBody Book book) {
-        wishlistService.addBookToWishlist(wishlistId, book);
+    public String addBookToWishlist(@RequestParam Long clientId, @RequestParam String wishlistName, @RequestParam long ISBN) {
+        wishlistService.addBookToWishlist(clientId, wishlistName, ISBN);
+        return "You have added a Book successfully!\n" + "Book added to " + wishlistName
+                + "\nBook Id " + ISBN;
     }
 
     @DeleteMapping(value = "/removeBook")
-    public void removeBookFromWishlist(@RequestParam Long wishlistId, @RequestBody Book book) {
-        wishlistService.removeBookFromWishlist(wishlistId, book);
+    public void removeBookFromWishlist(@RequestParam Long clientId, @RequestParam String wishlistName, @RequestParam long ISBN) {
+        wishlistService.removeBookFromWishlist(clientId, wishlistName, ISBN);
     }
 
     @GetMapping(value = "/getBooks")
-    public List<Book> getBooksInWishlist(@RequestParam Long wishlistId) {
-        return wishlistService.getBooksInWishlist(wishlistId);
+    public List<Book> getBooksInWishlist(@RequestParam Long clientId, @RequestParam String wishlistName) {
+        return wishlistService.getBooksInWishlist(clientId, wishlistName);
     }
 }
-
