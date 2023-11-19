@@ -2,6 +2,7 @@ package com.example.mysql_restapi.book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigInteger;
 import java.util.List;
 
 
@@ -16,8 +17,8 @@ public class BookController {
     @GetMapping(value = "/books")
     public List<Book> getBooks(){return bookService.getBooks();}
 
-    @GetMapping(value = "/books/{ISBN}")
-    public Book retrieveBookByISBN(@PathVariable long ISBN){return bookService.retrieveBookByISBN(ISBN);}
+    @GetMapping(value = "/books/{title}")
+    public Book retrieveBookByTitle(@PathVariable String title){return bookService.retrieveBookByTitle(title);}
 
     @PostMapping(value = "/books/add")
     public void addNewBook(@RequestBody Book book){bookService.addNewBook(book);}

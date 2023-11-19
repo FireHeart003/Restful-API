@@ -4,6 +4,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.math.BigInteger;
 import java.util.List;
 
 @Configuration
@@ -13,7 +14,7 @@ public class BookConfiguration {
         return args -> {
             List<Book> sampleBooks = List.of(
                     new Book(
-                            987654321,
+
                             "TestTitle",
                             "This a test object",
                             "Matt",
@@ -23,10 +24,11 @@ public class BookConfiguration {
                             50,
                             2000,
                             500,
-                            0.10
+                            0.10,
+                            123456789
                     ),
                     new Book(
-                            987123321,
+
                             "Skywalker",
                             "Starwars Ep 1",
                             "Geroge Lucas",
@@ -36,10 +38,11 @@ public class BookConfiguration {
                             8.8,
                             2000,
                             200,
-                            0.10
+                            0.10,
+                            987654321
                     ),
                     new Book(
-                            8675309,
+
                             "The Shining",
                             "Horror best Seller",
                             "Stephen King",
@@ -49,10 +52,11 @@ public class BookConfiguration {
                             9.5,
                             1977,
                             300,
-                            0.25
+                            0.25,
+                            987651234
                     ),
                     new Book(
-                            987612345,
+
                             "Lord of the Flies",
                             " Classic Fiction Novel",
                             "William Goldberg",
@@ -62,10 +66,11 @@ public class BookConfiguration {
                             7.6,
                             1954,
                             150,
-                            0.50
+                            0.50,
+                            123498765
                     ),
                     new Book(
-                            527846126,
+
                             "To Kill a Mockingbird",
                             "Ahead of its time",
                             "Harper Lee",
@@ -75,10 +80,11 @@ public class BookConfiguration {
                             8.74,
                             1960,
                             159,
-                            0.40
+                            0.40,
+                            8675309
                     ),
                     new Book (
-                            921465513,
+
                             "The Fault in Our Stars",
                             "Will make you rethink love",
                             "John Green",
@@ -88,10 +94,11 @@ public class BookConfiguration {
                             6.85,
                             2014,
                             310,
-                            0.30
+                            0.30,
+                            6516854
                     ),
                     new Book (
-                            1489256442,
+
                             "The Bad Beginning",
                             "The first novel of the popular series",
                             "Lemoney Snicket",
@@ -101,10 +108,11 @@ public class BookConfiguration {
                             8.25,
                             1999,
                             267,
-                            0.60
+                            0.60,
+                            646846545
                     ),
                     new Book (
-                            516846517,
+
                             "The Diary of a Young Girl",
                             "Personal story of real life horrors",
                             "Anne Frank",
@@ -114,10 +122,12 @@ public class BookConfiguration {
                             7.35,
                             1947,
                             248,
-                            0.25
+                            0.25,
+                            51846548
+
                     ),
                     new Book (
-                            658484541,
+
                             "The Book Thief",
                             "Another Look into Historical Fiction",
                             "Markus Zusak",
@@ -127,10 +137,11 @@ public class BookConfiguration {
                             8.4,
                             2006,
                             279,
-                            0.75
+                            0.75,
+                            57418464
                     ),
                     new Book (
-                            351988451,
+
                             "1984",
                             "Big Brother is watching",
                             "George Orwell",
@@ -140,10 +151,12 @@ public class BookConfiguration {
                             8.8,
                             1949,
                             389,
-                            0.15
+                            0.15,
+                            84516451
                     )
             );
             repository.saveAll(sampleBooks);
         };
     }
 }
+

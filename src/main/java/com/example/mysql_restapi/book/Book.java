@@ -11,10 +11,10 @@ public class Book
 {
     @Id
     @Column
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long ISBN;
-
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private String Title;
+
+    private long ISBN;
     private String Description;
 
     private String Author;
@@ -32,10 +32,10 @@ public class Book
     private List<Rating> rates;
 
 
-    public Book(long ISBN, String title, String description, String author, String genre,
-                String publisher, double price, double ratings, int yearPublished,
-                int copiesSold, double discountPercentage) {
-        this.ISBN = ISBN;
+    public Book( String title, String description, String author, String genre,
+                 String publisher, double price, double ratings, int yearPublished,
+                 int copiesSold, double discountPercentage, long ISBN) {
+
         Title = title;
         Description = description;
         Author = author;
@@ -46,15 +46,13 @@ public class Book
         this.discountPercentage = discountPercentage;
         YearPublished = yearPublished;
         CopiesSold = copiesSold;
+        this.ISBN= ISBN;
     }
 
     public Book() {
 
     }
 
-    public long getISBN() {
-        return ISBN;
-    }
 
     public String getTitle() {
         return Title;
@@ -87,10 +85,10 @@ public class Book
     public int getCopiesSold() {
         return CopiesSold;
     }
-
-    public void setISBN(long ISBN) {
-        this.ISBN = ISBN;
+    public long getISBN(){
+        return ISBN;
     }
+
 
     public void setTitle(String title) {
         Title = title;
@@ -140,11 +138,13 @@ public class Book
         this.discountPercentage = discountPercentage;
     }
 
+    public long getISBN (long ISBN){return ISBN;}
+
     @Override
     public String toString() {
         return "Book{" +
-                "ISBN=" + ISBN +
                 ", Title='" + Title + '\'' +
+                ", ISBN+" + ISBN +
                 ", Description='" + Description + '\'' +
                 ", Author='" + Author + '\'' +
                 ", Genre='" + Genre + '\'' +

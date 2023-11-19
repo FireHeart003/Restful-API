@@ -11,8 +11,8 @@ import java.util.Optional;
 public interface BookRepository
         extends JpaRepository<Book, Long> {
 
-    @Query("SELECT b FROM Book b WHERE b.ISBN = ?1")
-    Optional<Book> findByISBN(long isbn);
+    @Query("SELECT b FROM Book b WHERE b.Title = ?1")
+    Optional<Book> findByTitle(String title);
     @Query("SELECT b FROM Book b WHERE b.Genre = ?1")
     List<Book> findByGenre(String genre);
     @Query("SELECT new com.example.mysql_restapi.book.TopSeller(b.Title, b.CopiesSold) " +
@@ -25,3 +25,4 @@ public interface BookRepository
     List<Book> findByPublisher(String publisher);
 
 }
+

@@ -3,7 +3,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
-
+import java.math.BigInteger;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,8 +28,8 @@ public class BookService {
         return bookRepository.findAll();
     }
 
-    public Book retrieveBookByISBN(long isbn) {
-        Optional<Book> bookOptional = bookRepository.findByISBN(isbn);
+    public Book retrieveBookByTitle(String title) {
+        Optional<Book> bookOptional = bookRepository.findByTitle(title);
         if (bookOptional.isEmpty()) {
             throw new IllegalStateException("ISBN not found");
         }
@@ -37,7 +37,7 @@ public class BookService {
     }
 
     public void addNewBook(Book book) {
-        Optional<Book> bookOptional = bookRepository.findByISBN(book.getISBN());
+        Optional<Book> bookOptional = bookRepository.findByTitle(book.getTitle());
         if (bookOptional.isPresent()) {
             throw new IllegalStateException("Book with the same ISBN already exists.");
         }
@@ -75,3 +75,4 @@ public class BookService {
         }
     }
 }
+
