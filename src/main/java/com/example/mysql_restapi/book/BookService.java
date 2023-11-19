@@ -49,7 +49,7 @@ public class BookService {
     }
 
     public List<Book> getBooksByRating(double rating) {
-        return bookRepository.findByRatingsGreaterThanEqual(rating);
+        return bookRepository.findByRatingsGreaterThanOrEqual(rating);
     }
 
     public List<TopSeller> getTopSellers() {
