@@ -1,17 +1,12 @@
 package com.example.mysql_restapi.book;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-
-import java.math.BigInteger;
-import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import java.util.ArrayList;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,10 +25,7 @@ public class BookService {
 
     public Book retrieveBookByTitle(String title) {
         Optional<Book> bookOptional = bookRepository.findByTitle(title);
-        if (bookOptional.isEmpty()) {
-            throw new IllegalStateException("ISBN not found");
-        }
-        return bookOptional.get();
+        return bookOptional.orElseThrow(() -> new IllegalStateException("ISBN not found"));
     }
 
     public void addNewBook(Book book) {
@@ -63,16 +55,29 @@ public class BookService {
         return topSellerList;
     }
 
-
     @Transactional
-    public void discountBooksByPublisher(String publisher, double discountPercentage) {
+    public List<Double> discountBooksByPublisher(String publisher, double discountPercentage) {
         List<Book> books = bookRepository.findByPublisher(publisher);
+        List<Double> updatedPrices = new ArrayList<>();
+
         for (Book book : books) {
             double currentPrice = book.getPrice();
-            double discountedPrice = currentPrice * (1.0 - discountPercentage / 100.0);
-            book.setPrice(discountedPrice);
+            double discountedPrice = currentPrice - (currentPrice * discountPercentage / 100.0);
+
+            // Use BigDecimal for rounding to two decimal places
+            BigDecimal roundedDiscountedPrice = BigDecimal.valueOf(discountedPrice)
+                    .setScale(2, RoundingMode.HALF_UP);
+
+            double finalDiscountedPrice = roundedDiscountedPrice.doubleValue();
+
+            book.setPrice(finalDiscountedPrice);
             bookRepository.save(book);
+
+            updatedPrices.add(finalDiscountedPrice);
         }
+
+        return updatedPrices;
     }
 }
+
 
