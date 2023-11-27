@@ -32,14 +32,14 @@ public class Book
     @OneToMany(mappedBy = "book")
     private List<Rating> rates;
 
-    @ManyToOne
-    @JoinColumn(name = "wishlist_id")
-    private Wishlist wishlist;
+//    @ManyToOne
+//    @JoinColumn(name = "wishlist_name")
+//    private Wishlist wishlist;
 
-    public Wishlist getWishlist() {
-        return wishlist;
-    }
-
+//    public Wishlist getWishlist() {
+//        return wishlist;
+//    }
+//
 //    public void setWishlist(Wishlist wishlist) {
 //        this.wishlist = wishlist;
 //    }
