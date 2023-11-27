@@ -39,5 +39,5 @@ public class WishlistController {
     @GetMapping(value = "/getBooks")
     public List<Book> getBooksInWishlist(@RequestParam Long clientId, @RequestParam String wishlistName) {
         return wishlistService.getBooksInWishlist(clientId, wishlistName);
+        }
     }
-}
