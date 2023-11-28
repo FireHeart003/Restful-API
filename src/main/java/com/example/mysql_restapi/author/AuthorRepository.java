@@ -11,6 +11,6 @@ public interface AuthorRepository
         extends JpaRepository<Author, Long> {
 
     @Query("SELECT a FROM Author a WHERE a.id = ?1")
-    Optional<Author> findAuthorByID(long id);
+    Optional<Author> FindAuthorByID(long id);
 
 }

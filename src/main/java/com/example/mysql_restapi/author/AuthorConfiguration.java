@@ -12,7 +12,7 @@ public class AuthorConfiguration {
     CommandLineRunner commandLineRunnerAuthor(AuthorRepository repository){
         return args -> {
             Author FirstTest = new Author(
-                    12345678,
+                    123456789,
                     "Test Author",
                     "This is a test author",
                     "TestPublisher"
