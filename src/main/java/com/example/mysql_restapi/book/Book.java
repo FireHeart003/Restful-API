@@ -33,6 +33,7 @@ public class Book
     @OneToMany(mappedBy = "book")
     private List<Rating> rates;
 
+
 //    public Book(long ISBN, String Title, String Description, String Author, long AuthorID,
 //                     String Genre, String Publisher, double Price,
 //                     int YearPublished, int CopiesSold) {
@@ -56,6 +57,11 @@ public class Book
         return wishlist;
     }
 
+
+//    public Wishlist getWishlist() {
+//        return wishlist;
+//    }
+//
 //    public void setWishlist(Wishlist wishlist) {
 //        this.wishlist = wishlist;
 //    }

@@ -31,12 +31,13 @@ public class WishlistController {
     }
 
     @DeleteMapping(value = "/removeBook")
-    public void removeBookFromWishlist(@RequestParam Long clientId, @RequestParam String wishlistName, @RequestParam long ISBN) {
+    public String removeBookFromWishlist(@RequestParam Long clientId, @RequestParam String wishlistName, @RequestParam long ISBN) {
         wishlistService.removeBookFromWishlist(clientId, wishlistName, ISBN);
+        return "You have deleted a Book successfully!\n" + "Book deleted: " + ISBN;
     }
 
     @GetMapping(value = "/getBooks")
     public List<Book> getBooksInWishlist(@RequestParam Long clientId, @RequestParam String wishlistName) {
         return wishlistService.getBooksInWishlist(clientId, wishlistName);
+        }
     }
-}
