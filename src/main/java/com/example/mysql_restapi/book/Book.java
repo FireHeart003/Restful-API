@@ -11,7 +11,6 @@ public class Book
 {
     @Id
     @Column
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private String Title;
 
     private long ISBN;
@@ -23,6 +22,8 @@ public class Book
 
     private double Price;
     private double ratings;
+
+    @Column(name = "discount_percentage")
     private double discountPercentage;
     private int YearPublished;
     private int CopiesSold;

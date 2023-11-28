@@ -4,11 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.*;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class BookService {
@@ -56,9 +55,12 @@ public class BookService {
     }
 
     @Transactional
-    public List<Double> discountBooksByPublisher(String publisher, double discountPercentage) {
+    public Map<String, List<Double>> discountBooksByPublisher(String publisher, double discountPercentage) {
         List<Book> books = bookRepository.findByPublisher(publisher);
-        List<Double> updatedPrices = new ArrayList<>();
+        Map<String, List<Double>> priceChanges = new HashMap<>();
+
+        // List to store prices before the update
+        List<Double> originalPrices = books.stream().map(Book::getPrice).collect(Collectors.toList());
 
         for (Book book : books) {
             double currentPrice = book.getPrice();
@@ -70,14 +72,26 @@ public class BookService {
 
             double finalDiscountedPrice = roundedDiscountedPrice.doubleValue();
 
-            book.setPrice(finalDiscountedPrice);
-            bookRepository.save(book);
+            // Update the discountPercentage field in the Book entity
+            book.setDiscountPercentage(discountPercentage);
 
-            updatedPrices.add(finalDiscountedPrice);
+            // Update the price field in the Book entity
+            book.setPrice(finalDiscountedPrice);
+
+            bookRepository.save(book);
         }
 
-        return updatedPrices;
+        // List to store prices after the update
+        List<Double> updatedPrices = books.stream().map(Book::getPrice).collect(Collectors.toList());
+
+        // Populate the map with the original and updated prices
+        priceChanges.put("originalPrices", originalPrices);
+        priceChanges.put("updatedPrices", updatedPrices);
+
+        return priceChanges;
     }
+
+
 }
 
 

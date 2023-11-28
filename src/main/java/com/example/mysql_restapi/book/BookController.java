@@ -2,8 +2,7 @@ package com.example.mysql_restapi.book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.math.BigInteger;
+import java.util.Map;
 import java.util.List;
 
 
@@ -12,7 +11,7 @@ import java.util.List;
 public class BookController {
     private final BookService bookService;
 
-    //BOOK DETAILS
+
     @Autowired
     public BookController(BookService bookService) {
         this.bookService = bookService;
@@ -51,12 +50,14 @@ public class BookController {
     }
 
     @PutMapping(value = "/books/discount/{publisher}")
-    public ResponseEntity<List<Double>> discountBooksByPublisher(
+    public ResponseEntity<Map<String, List<Double>>> discountBooksByPublisher(
             @PathVariable String publisher,
             @RequestParam("discountPercentage") double discountPercentage) {
-        List<Double> updatedPrices = bookService.discountBooksByPublisher(publisher, discountPercentage);
-        return ResponseEntity.ok(updatedPrices);
+        Map<String, List<Double>> priceChanges = bookService.discountBooksByPublisher(publisher, discountPercentage);
+        return ResponseEntity.<Map<String, List<Double>>>ok(priceChanges);
     }
 }
+
+
 
 
